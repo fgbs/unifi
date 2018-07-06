@@ -3,8 +3,15 @@
 
 from __future__ import print_function
 
+import ssl
 import json
 from requests import Session, Request
+from requests_toolbelt import SSLAdapter
+
+# workaround to suppress InsecureRequestWarning
+# See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+import urllib3
+urllib3.disable_warnings()
 
 import exceptions
 
@@ -14,18 +21,19 @@ class Controller(object):
         self.host = host
         self.port = port
         self.version = version
-
         self.logged_in = False
+
         self._username = None
         self._password = None
-
-        self._session = Session()
-
         self._site = None
         self._baseurl = 'https://{}:{}'.format(
             self.host,
             self.port
         )
+
+        self._session = Session()
+        self._session.mount(self._baseurl, SSLAdapter(ssl.PROTOCOL_SSLv23))
+        
 
     @property
     def username(self):

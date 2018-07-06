@@ -1,27 +1,25 @@
 #!/usr/bin/env python
 
-from distutils.core import setup
-import sys
+import setuptools
 
-if sys.version_info[0] == 2:
-    from commands import getoutput
-elif sys.version_info[0] == 3:
-    from subprocess import getoutput
+with open("README.md", "r") as fh:
+    long_description = fh.read()
 
-
-setup(
-    name='unifi',
-    version='1.0.0',
-    description='API Ubiquity UniFi Controller',
+setuptools.setup(
+    name='unifi-api',
+    version='1.0.2',
     author='Felipe Barros',
     author_email='felipe.barros@gmail.com',
+    description='API Ubiquity UniFi Controller',
+    long_description=long_description,
+    long_description_content_type="text/markdown",
     url='https://github.com/fgbs/unifi',
-    packages=['unifi'],
+    packages=setuptools.find_packages(),
     install_requires=[
         'requests',
+        'requests-toolbelt'
     ],
     classifiers=[
-        'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Topic :: Software Development :: Libraries',
