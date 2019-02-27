@@ -13,7 +13,7 @@ from requests_toolbelt import SSLAdapter
 import urllib3
 urllib3.disable_warnings()
 
-import exceptions
+from . import exceptions
 
 
 class Controller(object):
