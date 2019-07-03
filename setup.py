@@ -7,7 +7,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name='unifi-api',
-    version='1.0.2',
+    version='1.0.3',
     author='Felipe Barros',
     author_email='felipe.barros@gmail.com',
     description='API Ubiquity UniFi Controller',
