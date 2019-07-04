@@ -143,7 +143,7 @@ class Controller(object):
 
         data = {
             'cmd': 'authorize-guest',
-            'mac': mac, 
+            'mac': mac.lower(), 
             'minutes': minutes
         }
 
@@ -154,7 +154,7 @@ class Controller(object):
         if bytes is not None:
             data['bytes'] = mbytes
         if ap_mac is not None and self.version != 'v2':
-            data['ap_mac'] = ap_mac
+            data['ap_mac'] = ap_mac.lower()
 
         return self._request(
             'cmd/stamgr',
@@ -172,7 +172,7 @@ class Controller(object):
             'cmd/stamgr',
             {
                 'cmd': 'unauthorize-guest',
-                'mac': mac
+                'mac': mac.lower()
             }
         )
 
@@ -187,7 +187,7 @@ class Controller(object):
             'cmd/stamgr',
             {
                 'cmd': 'kick-sta',
-                'mac': mac
+                'mac': mac.lower()
             }
         )
 
@@ -202,7 +202,7 @@ class Controller(object):
             'cmd/stamgr',
             {
                 'cmd': 'block-sta',
-                'mac': mac
+                'mac': mac.lower()
             }
         )
 
@@ -217,7 +217,7 @@ class Controller(object):
             'cmd/stamgr',
             {
                 'cmd': 'unblock-sta',
-                'mac': mac
+                'mac': mac.lower()
             }
         )
 
@@ -232,7 +232,7 @@ class Controller(object):
             'cmd/stamgr',
             {
                 'cmd': 'forget-sta',
-                'macs': macs
+                'macs': [x.lower() for x in macs]
             }
         )
 
